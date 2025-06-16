@@ -1,0 +1,20 @@
+# Ignore all text files
+# *.txt
+
+# Ignore node_modules folders
+node_modules/
+
+# Ignore build folders
+build/
+
+# Ignore VSCode settings folder
+.vscode/
+
+# Ignore OS generated files
+.DS_Store
+
+# Ignore package-lock.json files
+package-lock.json
+
+# Ignore environment variable files
+*.env

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -44,5 +44,144 @@
   </div>
 
   <script src="script.js"></script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Query Interface</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #f5f0e1, #e3d5ca);
+      color: #3e3e3e;
+      transition: background 0.5s ease-in-out;
+    }
+
+    #container {
+      max-width: 650px;
+      margin: 60px auto;
+      background-color: #fff8f0;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+    }
+
+    h1 {
+      text-align: center;
+      color: #6f4e37;
+      margin-bottom: 25px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 12px 15px;
+      font-size: 1em;
+      border: 1px solid #d3bfa4;
+      border-radius: 8px;
+      background-color: #fffdf9;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+      transition: border-color 0.3s ease;
+      resize: vertical;
+    }
+
+    textarea:focus {
+      border-color: #b89b74;
+      outline: none;
+    }
+
+    button {
+      margin-top: 1vh;
+      display: inline-block;
+      background-color: #c8a97e;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1em;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #b78c66;
+      transform: translateY(-2px);
+    }
+
+    #response {
+      margin-top: 25px;
+      padding: 20px;
+      background-color: #fdf7f1;
+      border-left: 4px solid #d6b790;
+      border-radius: 6px;
+      white-space: pre-wrap;
+      font-size: 0.95em;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h1>Ask a Question</h1>
+    <textarea id="queryInput" placeholder="Type your query here..."></textarea><br>
+    <button id="sendBtn">Send</button>
+    <div id="response"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="script.js"></script>
+
+  <!-- Placeholder -->
+  <!-- <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const sendBtn = document.getElementById("sendBtn");
+      const queryInput = document.getElementById("queryInput");
+      const responseDiv = document.getElementById("response");
+    
+      // Sample placeholder responses
+      const sampleResponses = {
+        "..": "The capital of _Brazil_ is **Brasília**.",
+        "How does photosynthesis work?": "Photosynthesis is the process by which green plants use sunlight to synthesize nutrients from carbon dioxide and water.",
+        "Give me a summary of World War II": "World War II (1939– 1945) was a global conflict involving major world powers and resulted in significant geopolitical changes.",
+        "What's the difference between HTTP and HTTPS?": "HTTPS is the secure version of HTTP. It uses SSL/TLS to encrypt the connection between browser and server.",
+        "Explain quantum computing in simple terms": "Quantum computing uses qubits instead of bits, allowing it to perform many calculations simultaneously due to superposition and entanglement."
+      };
+    
+      sendBtn.addEventListener("click", () => {
+        const userQuery = queryInput.value.trim();
+    
+        // Clear response area first
+        responseDiv.textContent = "";
+    
+        if (!userQuery) {
+          responseDiv.textContent = "Please enter a query.";
+          return;
+        }
+    
+        // Simulate a slight delay like a real API
+        responseDiv.textContent = "Thinking...";
+        setTimeout(() => {
+          responseDiv.innerHTML = marked.parse(
+            sampleResponses[userQuery] || "Sorry, I don't have an answer for that yet.");
+        }, 1000);
+      });
+    });
+  </script> -->
+
+
 </body>
 </html>

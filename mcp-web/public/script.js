@@ -39,8 +39,8 @@ document.getElementById("sendBtn").addEventListener("click", async () => {
     }
     // Show only the final message, not intermediate tool messages
     const finalMessage = data.response.split('\n').filter(line => !line.startsWith('[Tool:')).join('\n');
-    responseDiv.textContent = finalMessage || "No response";
+    responseDiv.innerHTML = marked.parse(finalMessage || "No response");
   } catch (err) {
-    responseDiv.textContent = "Error: " + err.message;
+    responseDiv.innerHTML = marked.parse("Error: " + err.message);
   }
 });

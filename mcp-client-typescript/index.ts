@@ -87,7 +87,67 @@ export class MCPClient {
     });
 
     const responseMessage = completion.choices[0].message;
-    const finalText: string[] = [];
+
+
+
+    // const finalText: string[] = [];
+
+    let finalReply = "";
+
+    // if (responseMessage.tool_calls) {
+    //   for (const toolCall of responseMessage.tool_calls) {
+    //     const toolName = toolCall.function.name;
+    //     const args = JSON.parse(toolCall.function.arguments || "{}");
+
+    //     const result = await this.mcp.callTool({
+    //       name: toolName,
+    //       arguments: args,
+    //     });
+
+    //     finalText.push(`[Tool: ${toolName}]`);
+    //     if (Array.isArray(result.content)) {
+    //       for (const item of result.content) {
+    //         if (typeof item === "object" && item !== null && "type" in item && item.type === "text") {
+    //           finalText.push((item as { type: string; text: string }).text);
+    //         }
+    //       }
+    //     } else {
+    //       finalText.push(String(result.content)); // fallback
+    //     }
+        
+
+    //     messages.push(responseMessage);
+    //     const toolContent = JSON.stringify(result.content);
+    //     const truncatedToolContent = toolContent.length > 1000
+    //       ? toolContent.slice(0, 1000) + "... [truncated]"
+    //       : toolContent;
+
+    //     messages.push({
+    //       role: "tool",
+    //       tool_call_id: toolCall.id,
+    //       content: truncatedToolContent,
+    //     });
+
+    //     messages = this.trimMessages(messages);
+
+    //     const secondResponse = await this.openai.chat.completions.create({
+    //       model: "gpt-4o-mini",
+    //       messages,
+    //       max_tokens: 500,
+    //     });
+
+    //     const finalResponse = secondResponse.choices[0].message;
+    //     if (finalResponse.content) {
+    //       finalText.push(finalResponse.content);
+    //     }
+    //   }
+    // } else if (responseMessage.content) {
+    //   finalText.push(responseMessage.content);
+    // }
+
+    // return finalText.join("\n");
+
+    //For a single reply without any tools
 
     if (responseMessage.tool_calls) {
       for (const toolCall of responseMessage.tool_calls) {
@@ -99,19 +159,8 @@ export class MCPClient {
           arguments: args,
         });
 
-        finalText.push(`[Tool: ${toolName}]`);
-        if (Array.isArray(result.content)) {
-          for (const item of result.content) {
-            if (typeof item === "object" && item !== null && "type" in item && item.type === "text") {
-              finalText.push((item as { type: string; text: string }).text);
-            }
-          }
-        } else {
-          finalText.push(String(result.content)); // fallback
-        }
-        
-
         messages.push(responseMessage);
+
         const toolContent = JSON.stringify(result.content);
         const truncatedToolContent = toolContent.length > 1000
           ? toolContent.slice(0, 1000) + "... [truncated]"
@@ -133,14 +182,17 @@ export class MCPClient {
 
         const finalResponse = secondResponse.choices[0].message;
         if (finalResponse.content) {
-          finalText.push(finalResponse.content);
+          finalReply = finalResponse.content;
         }
       }
     } else if (responseMessage.content) {
-      finalText.push(responseMessage.content);
+      finalReply = responseMessage.content;
     }
 
-    return finalText.join("\n");
+    return finalReply;
+
+
+
   }
 
   async chatLoop() {
